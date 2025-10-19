@@ -3,8 +3,8 @@
 Simple Persistent Key-Value Store - Python Implementation
 Supports SET, GET, and EXIT commands with append-only storage.
 
-Author: Your Name
-EUID: your_euid
+Author: Likhith Satya Neerukonda
+EUID: 11800658
 Date: October 18, 2025
 """
 
@@ -78,7 +78,7 @@ class SimpleKVStore:
                     
                     # Update index (last write wins)
                     self._update_index(key, offset, val_len)
-        except Exception as e:
+        except Exception:
             # If there's an error reading the file, start with empty index
             self.index = []
     
@@ -217,31 +217,31 @@ class SimpleKVStore:
                 
                 elif command == "SET":
                     if len(parts) < 3:
-                        print("Error: SET requires key and value")
+                        print("Error: SET requires key and value", flush=True)
                         continue
                     key = parts[1]
                     value = parts[2]
                     self.set(key, value)
-                    print("OK")
+                    print("OK", flush=True)
                 
                 elif command == "GET":
                     if len(parts) < 2:
-                        print("Error: GET requires key")
+                        print("Error: GET requires key", flush=True)
                         continue
                     key = parts[1]
                     value = self.get(key)
                     if value is None:
-                        print("(nil)")
+                        print("(nil)", flush=True)
                     else:
-                        print(value)
+                        print(value, flush=True)
                 
                 else:
-                    print(f"Error: Unknown command '{command}'")
+                    print(f"Error: Unknown command '{command}'", flush=True)
             
             except KeyboardInterrupt:
                 break
             except Exception as e:
-                print(f"Error: {e}")
+                print(f"Error: {e}", flush=True)
 
 
 if __name__ == "__main__":
