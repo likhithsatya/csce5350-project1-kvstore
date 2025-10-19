@@ -1,0 +1,7 @@
+SET key1 value1
+SET key2 value2
+GET key1
+GET key2
+SET key1 updated
+GET key1
+EXIT
